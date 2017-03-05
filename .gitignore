@@ -116,3 +116,6 @@ typings/
 # dotenv environment variables file
 .env
 /.idea/**
+/serviceAccountCredentials.json
+/martita.iml
+/.idea/
