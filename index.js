@@ -12,7 +12,7 @@ function init() {
 
 	var config = {
 		baudRate: 9600,
-		parser: serialport.parsers.readline(READLINE)
+		parser: serialPort.parsers.readline(READLINE)
 	};
 
 	spInstance = new serialPort(PORTA_SERIAL, config);
@@ -22,6 +22,7 @@ function init() {
 	spInstance.on('close', conexaoFechada);
 	spInstance.on('error', deuPau);
 }
+
 function conexaoAberta() {
 	console.log('\f Conexão aberta.' +
 		'\n * BaudRate: ' + spInstance.options.baudRate +
@@ -54,4 +55,3 @@ function montaJSON(data) {
 
 	return JSON.stringify(dados);
 }
-
