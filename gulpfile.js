@@ -25,14 +25,16 @@ var path = {
 		'node_modules/materialize-css/dist/js/materialize.min.js',
 		'node_modules/angular-material-sidemenu/dest/angular-material-sidemenu.js',
 		'node_modules/angularfire/dist/angularfire.min.js',
-		'node_modules/firebase/firebase.js'
+		'node_modules/firebase/firebase.js',
+		'node_modules/chart.js/dist/Chart.min.js',
+		'node_modules/angular-chart.js/dist/angular-chart.min.js'
 	],
 	JS: [
-
 		'app/assets/**/*.js',
 		'app/config/rotas.js',
 		'app/views/main/main.controller.js',
-		'app/views/main/main.service.js'
+		'app/views/main/main.service.js',
+		'app/views/main/main.directive.js'
 	],
 	JSON: [
 		'app/views/**/*.json'

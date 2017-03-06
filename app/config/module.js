@@ -9,7 +9,8 @@
 			'ngAnimate',
 			'ngMaterial',
 			'ngMaterialSidemenu',
-			'firebase'
+			'firebase',
+			'chart.js'
 		]);
 })();
 

@@ -1,15 +1,8 @@
-<div class="row">
-    <div class="col m8">
-        <div class="card">
-            <div class="card-content">
-                <span class="card-title">Card Title</span>
-                <div ng-repeat="dadosMartita in vm.todos">
-                    Data: {{dadosMartita.data | date:"dd/MM/yyyy 'as' h:mma"}}<br>
-                    Umidade do solo: {{dadosMartita.umidadeSolo}} - Temperatura: {{dadosMartita.temperatura}} - Umidade:
-                    {{dadosMartita.umidade}}
-                    <hr>
-                </div>
-            </div>
+<div class="col-lg-6 col-sm-12">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <canvas id="updating-chart" width="500" height="300"></canvas>
+
         </div>
     </div>
 </div>
