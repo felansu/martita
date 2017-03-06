@@ -7,7 +7,7 @@
 		.controller('MainController', MainController);
 
 	/* @ngInject */
-	function MainController($state, $mdSidenav, $firebaseArray) {
+	function MainController($state, $mdSidenav, MainService) {
 
 		var vm = this;
 
@@ -22,22 +22,7 @@
 
 		function init(rota) {
 			$state.go(rota);
-			firebaseInit();
-		}
-
-		function firebaseInit() {
-			if (!firebase.apps.length) {
-				var config = {
-					databaseURL: "https://martita-50f93.firebaseio.com"
-				};
-				firebase.initializeApp(config);
-			}
-			watchMartita();
-		}
-
-		function watchMartita() {
-			var ref = firebase.database().ref('martita').limitToLast(100);
-			vm.todos = $firebaseArray(ref);
+			vm.todos = MainService.obterDadosMartita();
 		}
 
 		function alterarRota(state) {

@@ -31,7 +31,8 @@ var path = {
 
 		'app/assets/**/*.js',
 		'app/config/rotas.js',
-		'app/views/main/main.controller.js'
+		'app/views/main/main.controller.js',
+		'app/views/main/main.service.js'
 	],
 	JSON: [
 		'app/views/**/*.json'
@@ -49,7 +50,7 @@ var path = {
 		'node_modules/angular-ui-grid/**/*.{ttf,woff,woff2,eof,svg}'
 	],
 	FONTES: [
-		'node_modules/materialize/fonts/**/*.{ttf,woff,woff2,eof,svg}'
+		'node_modules/materialize-css/fonts/**/*.{ttf,woff,woff2,eof,svg}'
 	]
 };
 gulp.task('lint', function () {
@@ -111,6 +112,6 @@ gulp.task('browser-sync', ['build'], function () {
 
 gulp.task('default', ['browser-sync'], function () {
 
-	gulp.watch(["./app/views/**/*.*","./app/*.*" ], ["build"]);
+	gulp.watch(["./app/views/**/*.*", "./app/*.*"], ["build"]);
 	gulp.watch("./public/**/*.*").on('change', browserSync.reload);
 });
