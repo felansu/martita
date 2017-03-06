@@ -35,7 +35,7 @@
 					vm.temperaturas.push(obj.temperatura);
 					vm.umidades.push(obj.umidade);
 					vm.umidadesSolo.push(obj.umidadeSolo);
-					vm.datas.push($filter('date')(obj.data, "yyyy-MM-dd"));
+					vm.datas.push($filter('date')(obj.data, "h:mm"));
 				}
 				vm.teste.push(vm.temperaturas);
 				vm.teste.push(vm.umidades);
@@ -46,7 +46,7 @@
 					labels: vm.datas,
 					datasets: [
 						{
-							label: "My First Dataset",
+							label: "Temperatura",
 							fill: false,
 							lineTension: 0.1,
 							backgroundColor: "rgba(75,192,192,0.4)",
@@ -68,7 +68,7 @@
 							spanGaps: false
 						},
 						{
-							label: "My First Dataset",
+							label: "Umidade",
 							fill: false,
 							lineTension: 0.1,
 							backgroundColor: "rgba(75,192,192,0.4)",
@@ -90,7 +90,7 @@
 							spanGaps: false
 						},
 						{
-							label: "My First Dataset",
+							label: "Umidade do solo",
 							fill: false,
 							lineTension: 0.1,
 							backgroundColor: "rgba(75,192,192,0.4)",
