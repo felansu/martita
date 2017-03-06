@@ -10,7 +10,7 @@
 			'ngMaterial',
 			'ngMaterialSidemenu',
 			'firebase',
-			'chart.js'
+			'tc.chartjs'
 		]);
 })();
 

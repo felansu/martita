@@ -27,7 +27,8 @@ var path = {
 		'node_modules/angularfire/dist/angularfire.min.js',
 		'node_modules/firebase/firebase.js',
 		'node_modules/chart.js/dist/Chart.min.js',
-		'node_modules/angular-chart.js/dist/angular-chart.min.js'
+		'node_modules/angular-chart.js/dist/angular-chart.min.js',
+		'node_modules/tc-angular-chartjs/dist/tc-angular-chartjs.min.js'
 	],
 	JS: [
 		'app/assets/**/*.js',

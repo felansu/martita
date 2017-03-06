@@ -1,8 +1,11 @@
-<div class="col-lg-6 col-sm-12">
-    <div class="panel panel-default">
-        <div class="panel-body">
-            <canvas id="updating-chart" width="500" height="300"></canvas>
-
-        </div>
+<div class="row">
+    <div class="col s12 m6">
+        <canvas
+                tc-chartjs-line
+                chart-data="chartData"
+                chart-options="chartOptions"
+                chart-click="onChartClick(event)"
+                chart-legend="lineChart"
+        ></canvas>
     </div>
 </div>
