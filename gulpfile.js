@@ -33,6 +33,7 @@ var path = {
 	JS: [
 		'app/assets/**/*.js',
 		'app/config/rotas.js',
+		'app/config/auth.service.js',
 		'app/views/main/main.controller.js',
 		'app/views/main/main.service.js',
 		'app/views/main/main.directive.js'

@@ -12,9 +12,12 @@
 		self.obterDadosMartita = obterDadosMartita;
 
 		function obterDadosMartita() {
-			abreConexao();
-			var ref = firebase.database().ref('martita').limitToLast(100);
-			return $firebaseArray(ref);
+            return firebase.database()
+                .ref()
+                .once('value')
+                .then(function (response) {
+                    return response.val();
+                });
 		}
 
 		function abreConexao() {
