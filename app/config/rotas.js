@@ -8,16 +8,17 @@
 	/* @ngInject */
 	function config($stateProvider) {
 
-		const main = {
-			name: 'main',
-			url: '/main',
-			templateUrl: 'views/main/main.html',
-			controller: 'MainController',
+		const dashboard = {
+			name: 'dashboard',
+			url: '/dashboard',
+			templateUrl: 'views/dashboard/dashboard.html',
+			controller: 'DashboardController',
 			controllerAs: 'vm'
 		};
 
 		$stateProvider
-			.state('main', main)
+			.state('dashboard', dashboard);
+
 	}
 
 })();

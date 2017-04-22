@@ -49,12 +49,12 @@
   "supernew": false,
   "validthis": false,
   "noyield": false,
-
   "browser": true,
   "node": true,
-
   "globals": {
     "angular": false,
-    "$": false
+    "$": false,
+    "firebase": false,
+    "Materialize": false
   }
 }

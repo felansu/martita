@@ -5,12 +5,14 @@
 	angular
 		.module('martita', [
 			'ui.router',
-			'ui.grid',
 			'ngAnimate',
 			'ngMaterial',
 			'ngMaterialSidemenu',
 			'firebase',
-			'tc.chartjs'
+			'LocalStorageModule',
+			'mdSteppers',
+			'ui.materialize',
+			'ui.utils.masks',
+			'chart.js'
 		]);
 })();
-

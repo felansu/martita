@@ -1,0 +1,108 @@
+<fs-crud icone="supervisor_account" service="vm.alunoService">
+
+    <fs-crud-body>
+
+        <fs-input-text label="Nome"
+                       largura="8"
+                       ng-model="vm.alunoService.entidade.nome"
+                       ng-required="true">
+        </fs-input-text>
+
+        <fs-input-text-cpf label="CPF"
+                           largura="4"
+                           ng-model="vm.alunoService.entidade.cpfResponsavel"
+                           ng-required="true">
+        </fs-input-text-cpf>
+
+        <fs-input-text label="Responsável (Se Houver)"
+                       largura="6"
+                       ng-model="vm.alunoService.entidade.responsavel">
+        </fs-input-text>
+
+        <fs-input-text-phone label="Telefone"
+                             largura="6"
+                             ng-model="vm.alunoService.entidade.telefone"
+                             ng-required="true">
+        </fs-input-text-phone>
+
+        <fs-select largura="6"
+                   ng-model="vm.alunoService.entidade.instituicao"
+                   lista="vm.instituicaoService.listaEntidade"
+                   ng-required="true"
+                   show="nome"
+                   key-as-value="true"
+                   mensagem="Instituição">
+        </fs-select>
+
+        <fs-select largura="6"
+                   ng-model="vm.alunoService.entidade.turno"
+                   lista="['Matutino', 'Vespertino', 'Noturno']"
+                   ng-required="true"
+                   mensagem="Período">
+        </fs-select>
+    </fs-crud-body>
+
+    <fs-list ng-show="vm.alunoService.mode == 'list'">
+
+        <div class="input-field col s4">
+            <input id="nome" type="text" class="validate" ng-model="criterio.nome">
+            <label for="nome">Aluno</label>
+        </div>
+
+        <div class="input-field col s4">
+            <input id="instituicao" type="text" class="validate" ng-model="criterio.data.instituicao.nome">
+            <label for="instituicao">Instituição</label>
+        </div>
+
+        <div class="input-field col s4">
+            <input id="turno" type="text" class="validate" ng-model="criterio.turno">
+            <label for="turno">Turno</label>
+        </div>
+
+        <table class="highlight">
+            <thead>
+            <tr>
+                <th data-field="descricao" class="col l3 m3 s3">Nome</th>
+                <th data-field="tipo" class="col l3 m3 s3">Instituição</th>
+                <th data-field="tipo" class="col l2 m2 s2">Turno</th>
+                <th data-field="tipo" class="col l2 m2 s2">Telefone</th>
+                <th data-field="acoes" class="col l2 m2 s2 center">Ações</th>
+            </tr>
+            </thead>
+
+            <tbody>
+
+            <tr ng-repeat="(key, aluno) in vm.alunoService.listaEntidade | filter : criterio track by key"
+                ng-init="aluno.data.instituicao = vm.alunoService.instituicao.$load(aluno.instituicao)">
+                <td class="col l3 m3 s3 " style="text-align:left; padding-top: 5px; padding: 15px">{{aluno.nome}}</td>
+                <td class="col l3 m3 s3 " style="text-align:left; padding-top: 5px; padding: 15px"
+                    ng-bind="aluno.data.instituicao.nome">
+                </td>
+                <td class="col l2 m2 s2" style="text-align:left; padding-top: 5px; padding: 15px">{{aluno.turno}}</td>
+                <td class="col l2 m2 s2" style="text-align:left; padding-top: 5px; padding: 15px">{{aluno.telefone}}
+                </td>
+                <td class="col l2 m2 s2 center">
+                    <md-button class="md-icon-button semEspaco"
+                               aria-label="Fechar"
+                               ng-click="vm.alunoService.editar(key)">
+                        <md-tooltip>Editar Aluno</md-tooltip>
+                        <a href="#" class="material-icons blue-grey-text">edit</a>
+                    </md-button>
+                    <md-button class="md-icon-button semEspaco"
+                               aria-label="Fechar"
+                               ng-click="vm.alunoService.eliminar(key)">
+                        <md-tooltip>Excluir Aluno</md-tooltip>
+                        <a href="#" class="material-icons red-text">delete</a>
+                    </md-button>
+                    <md-button class="md-icon-button semEspaco"
+                               aria-label="Fechar"
+                               onclick="Materialize.toast('Gerar Contratro', 4000)">
+                        <md-tooltip>Gerar Contratro</md-tooltip>
+                        <a href="#" class="material-icons light-green-text">assignment</a>
+                    </md-button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </fs-list>
+</fs-crud>

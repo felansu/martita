@@ -1,3 +1,4 @@
+# Created by https://www.gitignore.io/api/intellij,node,bower
 
 ### Bower ###
 bower_components
@@ -115,8 +116,8 @@ typings/
 
 # dotenv environment variables file
 .env
-/.idea/**
-/serviceAccountCredentials.json
-/martita.iml
-/.idea/
+
+
+# End of https://www.gitignore.io/api/intellij,node,bower
 /public/
+/.idea/

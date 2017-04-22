@@ -1,0 +1,58 @@
+<div class="fixed-action-btn horizontal">
+    <a class="btn-floating btn-large indigo darken-4 waves-effect waves-light" href="#/dashboard">
+        <i class="material-icons">reply</i>
+        <md-tooltip md-direction="top">Voltar</md-tooltip>
+    </a>
+</div>
+<div class="row">
+    <div class="col s12">
+        <div class="card white hoverable">
+            <div class="progress" ng-show="!service.listaEntidade.length || service.listaEntidade == []">
+                <div class="indeterminate"></div>
+            </div>
+            <div class="card-content estruturaLayout">
+                <md-button ng-show="service.listaEntidade.length"
+                           class="md-icon-button collapse right activator"
+                           aria-label="Listagem"
+                           ng-click="::service.switchCard()">
+                    <md-tooltip>Listagem</md-tooltip>
+                    <i class="material-icons right">list</i>
+                </md-button>
+
+                <form novalidate id="formGenerico" name="formGenerico" ng-submit="service.salvar()">
+                    <div class="row">
+                        <i class="material-icons left" ng-bind="icone"></i>
+                        <span class="card-title" ng-bind="::service.tituloPaginaCadastro"></span>
+                        <div ng-transclude="header"></div>
+                        <div ng-transclude="body"></div>
+                    </div>
+                    <div class="card-action">
+
+                        <md-button ng-disabled="formGenerico.$invalid" class="md-raised md-primary"
+                                   ng-click="service.salvar()">
+                            Salvar
+                        </md-button>
+                        <md-button class="md-raised red darken-1 white-text"
+                                   ng-click="service.limpar()">
+                            Limpar
+                        </md-button>
+
+                        <div ng-transclude="footer"></div>
+                    </div>
+                </form>
+            </div>
+            <div class="card-reveal">
+                <md-button class="md-icon-button collapse right"
+                           aria-label="Fechar"
+                           ng-click="::service.switchCard()">
+                    <md-tooltip>Fechar</md-tooltip>
+                    <i class="material-icons right">close</i>
+                </md-button>
+
+                <i class="material-icons left" ng-bind="::icone"></i>
+                <span class="card-title " ng-bind="::service.tituloPaginaPesquisa"></span>
+                <div ng-transclude="list"></div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,12 @@
+<div class="input-field col s{{::largura}}">
+    <i class="material-icons prefix">{{::icone}}</i>
+    <input class="input-field "
+           id="{{::inputName}}"
+           name="{{::inputName}}"
+           type="{{::tipo}}"
+           ng-model="ngModel"
+           ng-required="ngRequired"
+           ui-br-phone-number>
+    <label for="{{::inputName}}" ng-bind="::label">Descrição</label>
+</div>
+

@@ -1,0 +1,15 @@
+<div class="input-field col s{{::largura}}">
+    <i ng-show="icone" class="material-icons prefix">{{::icone}}</i>
+    <select id="{{selectName}}"
+            name="{{selectName}}"
+            ng-model="ngModel"
+            material-select
+            watch>
+        <option value=""
+                disabled selected>{{::mensagem}}
+        </option>
+        <option ng-repeat="e in getLista() track by $index"
+                ng-value="keyAsValue ? e['$id'] : e[show] ? e[show] : e">{{e[show] ? e[show] : e}}
+        </option>
+    </select>
+</div>
