@@ -1,6 +1,43 @@
-.estruturaLayout{
-	height: 510px;
+.estruturaLayout {
+    height: 510px;
 }
-.telaLogin{
-	background: rgb(232, 232, 232);
+
+.telaLogin {
+    background: rgb(232, 232, 232);
+}
+
+.temperatura-alta {
+    color: #D84315;
+}
+
+.temperatura-media {
+    color: #2E7D32;
+}
+
+.temperatura-baixa {
+    color: #0277BD;
+}
+
+.umidade-alta {
+    color: #D84315;
+}
+
+.umidade-media {
+    color: #2E7D32;
+}
+
+.umidade-baixa {
+    color: #0277BD;
+}
+
+.solo-alta {
+    color: #D84315;
+}
+
+.solo-media {
+    color: #2E7D32;
+}
+
+.solo-baixa {
+    color: #0277BD;
 }

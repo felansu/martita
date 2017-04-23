@@ -1,8 +1,33 @@
 <div class="row">
-    <div class="col m4">
+    <div class="col m4 center">
         <div class="card hoverable">
             <div class="card-content">
                 <span class="card-title">Temperatura</span>
+                <h1 ng-class="vm.classTemperatura"
+                    ng-show="vm.ultimaTemperatura"
+                    ng-bind="vm.ultimaTemperatura + 'Cº'"></h1>
+            </div>
+        </div>
+    </div>
+    <div class="col m4 center">
+        <div class="card hoverable">
+            <div class="card-content">
+                <span class="card-title">Umidade</span>
+                <h1 ng-class="vm.classUmidade" ng-show="vm.umidades.length">{{vm.umidades[vm.umidades.length - 1] + '%'}}</h1>
+            </div>
+        </div>
+    </div>
+    <div class="col m4 center">
+        <div class="card hoverable">
+            <div class="card-content">
+                <span class="card-title">Umidade do solo</span>
+                <h1 ng-class="vm.classSolo" ng-show="vm.solo.length">{{vm.solo[vm.solo.length - 1] + '%'}}</h1>
+            </div>
+        </div>
+    </div>
+    <div class="col m4">
+        <div class="card hoverable">
+            <div class="card-content">
                 <canvas class="chart chart-line" chart-data="vm.dataTemperaturas" chart-labels="vm.labels"
                         chart-series="vm.seriesTemperatura" chart-click="onClick"></canvas>
             </div>
@@ -11,7 +36,6 @@
     <div class="col m4">
         <div class="card hoverable">
             <div class="card-content">
-                <span class="card-title">Umidade</span>
                 <canvas class="chart chart-line" chart-data="vm.dataUmidades" chart-labels="vm.labels"
                         chart-series="vm.seriesUmidade" chart-click="onClick"></canvas>
             </div>
@@ -20,7 +44,6 @@
     <div class="col m4">
         <div class="card hoverable">
             <div class="card-content">
-                <span class="card-title">Umidade do solo</span>
                 <canvas class="chart chart-line" chart-data="vm.dataSolo" chart-labels="vm.labels"
                         chart-series="vm.seriesSolo" chart-click="onClick"></canvas>
             </div>
