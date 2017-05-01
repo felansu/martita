@@ -14,8 +14,7 @@
             return $firebaseArray(
                 firebase.database().ref()
                     .child('martita')
-                    .orderByChild("tempo/day")
-                    .limitToLast(40));
+                    .limitToLast(38));
         }
 
         function abreConexao() {

@@ -13,7 +13,9 @@
         <div class="card hoverable">
             <div class="card-content">
                 <span class="card-title">Umidade</span>
-                <h1 ng-class="vm.classUmidade" ng-show="vm.umidades.length">{{vm.umidades[vm.umidades.length - 1] + '%'}}</h1>
+                <h1 ng-class="vm.classUmidade"
+                    ng-show="vm.ultimaUmidade"
+                    ng-bind="vm.ultimaUmidade + '%'"></h1>
             </div>
         </div>
     </div>
@@ -21,7 +23,9 @@
         <div class="card hoverable">
             <div class="card-content">
                 <span class="card-title">Umidade do solo</span>
-                <h1 ng-class="vm.classSolo" ng-show="vm.solo.length">{{vm.solo[vm.solo.length - 1] + '%'}}</h1>
+                <h1 ng-class="vm.classSolo"
+                    ng-show="vm.ultimaSolo"
+                    ng-bind="vm.ultimaSolo+ '%'"></h1>
             </div>
         </div>
     </div>

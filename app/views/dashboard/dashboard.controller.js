@@ -27,27 +27,50 @@
             $state.go('dashboard');
             vm.result = DashboardService.obterDadosMartita();
             vm.result.$loaded().then(function (result) {
-                vm.datas = [];
                 vm.temperaturas = [];
                 vm.umidades = [];
                 vm.solo = [];
                 vm.tempo = [];
-                for (var i = 0; i < vm.result.length; i++) {
-                    var obj = vm.result[i];
-                    var tempo = obj.tempo.hours + ':' + obj.tempo.minutes;
-                    vm.temperaturas.push(obj.temperatura);
-                    vm.umidades.push(obj.umidade);
-                    vm.solo.push(obj.solo);
-                    vm.tempo.push(tempo);
-                    vm.datas.push($filter('date')(obj.data, "h:mm"));
+                for (var i = 0; i < result.length; i++) {
+                    var obj = result[i];
+                    var tempo = obj.tempo.hours;
+                    vm.tempo[tempo] = vm.tempo[tempo] ? vm.tempo[tempo] : [];
+                    vm.tempo[tempo]['temperatura'] = vm.tempo[tempo]['temperatura'] ? vm.tempo[tempo]['temperatura'] : [];
+                    vm.tempo[tempo]['umidade'] = vm.tempo[tempo]['umidade'] ? vm.tempo[tempo]['umidade'] : [];
+                    vm.tempo[tempo]['solo'] = vm.tempo[tempo]['solo'] ? vm.tempo[tempo]['solo'] : [];
+
+                    vm.tempo[tempo]['temperatura'].push(obj.temperatura);
+                    vm.tempo[tempo]['umidade'].push(obj.umidade);
+                    vm.tempo[tempo]['solo'].push(obj.solo);
+                    if(i === result.length-1){
+                        vm.ultimaTemperatura = obj.temperatura;
+                        vm.ultimaUmidade = obj.umidade;
+                        vm.ultimaSolo = obj.solo;
+                    }
                 }
-                vm.dataTemperaturas.push(vm.temperaturas);
-                vm.dataUmidades.push(vm.umidades);
-                vm.dataSolo.push(vm.solo);
-                vm.labels = vm.tempo;
-                vm.ultimaTemperatura = vm.temperaturas[vm.temperaturas.length - 1];
-                vm.ultimaUmidade = vm.umidades[vm.umidades.length - 1];
-                vm.ultimaSolo = vm.solo[vm.solo.length - 1];
+                vm.dataTemperaturas = vm.tempo.map(function (a) {
+                    var soma = a.temperatura.reduce(function (a, b) {
+                        return parseFloat(a) + parseFloat(b);
+                    });
+                    return parseFloat(soma / a.temperatura.length);
+                });
+                vm.dataUmidades = vm.tempo.map(function (a) {
+                    var soma = a.umidade.reduce(function (a, b) {
+                        return parseFloat(a) + parseFloat(b);
+                    });
+                    return soma / a.umidade.length;
+                });
+                vm.dataSolo = vm.tempo.map(function (a) {
+                    var soma = a.solo.reduce(function (a, b) {
+                        return parseFloat(a) + parseFloat(b);
+                    });
+                    return soma / a.solo.length;
+                });
+                vm.dataTemperaturas = [Object.values(vm.dataTemperaturas)];
+                vm.dataUmidades = [Object.values(vm.dataUmidades)];
+                vm.dataSolo = [Object.values(vm.dataSolo)];
+                vm.labels = Object.keys(vm.tempo);
+
                 getClassTemperatura();
                 getClassUmidade();
                 getClassSolo();
