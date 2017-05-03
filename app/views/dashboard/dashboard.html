@@ -4,8 +4,10 @@
             <div class="card-content">
                 <span class="card-title">Temperatura</span>
                 <h1 ng-class="vm.classTemperatura"
-                    ng-show="vm.ultimaTemperatura"
-                    ng-bind="vm.ultimaTemperatura + 'Cº'"></h1>
+                    ng-show="vm.ultimosDados.temperatura"
+                    ng-bind="vm.ultimosDados.temperatura + 'Cº'"></h1>
+                <span ng-bind="'Max: '+ vm.dadosMax.temperatura"></span>
+                <span ng-bind="'Min: '+ vm.dadosMin.temperatura"></span>
             </div>
         </div>
     </div>
@@ -14,8 +16,10 @@
             <div class="card-content">
                 <span class="card-title">Umidade</span>
                 <h1 ng-class="vm.classUmidade"
-                    ng-show="vm.ultimaUmidade"
-                    ng-bind="vm.ultimaUmidade + '%'"></h1>
+                    ng-show="vm.ultimosDados.umidade"
+                    ng-bind="vm.ultimosDados.umidade + '%'"></h1>
+                <span ng-bind="'Max: '+ vm.dadosMax.umidade"></span>
+                <span ng-bind="'Min: '+ vm.dadosMin.umidade"></span>
             </div>
         </div>
     </div>
@@ -24,32 +28,43 @@
             <div class="card-content">
                 <span class="card-title">Umidade do solo</span>
                 <h1 ng-class="vm.classSolo"
-                    ng-show="vm.ultimaSolo"
-                    ng-bind="vm.ultimaSolo+ '%'"></h1>
+                    ng-show="vm.ultimosDados.solo"
+                    ng-bind="vm.ultimosDados.solo+ '%'"></h1>
+                <span ng-bind="'Max: '+ vm.dadosMax.solo"></span>
+                <span ng-bind="'Min: '+ vm.dadosMin.solo"></span>
             </div>
         </div>
     </div>
     <div class="col m4">
         <div class="card hoverable">
             <div class="card-content">
-                <canvas class="chart chart-line" chart-data="vm.dataTemperaturas" chart-labels="vm.labels"
-                        chart-series="vm.seriesTemperatura" chart-click="onClick"></canvas>
+                <canvas class="chart chart-line"
+                        chart-data="[vm.dados.temperatura]"
+                        chart-labels="vm.dados.tempo"
+                        chart-series="vm.seriesTemperatura"
+                        chart-click="onClick"></canvas>
             </div>
         </div>
     </div>
     <div class="col m4">
         <div class="card hoverable">
             <div class="card-content">
-                <canvas class="chart chart-line" chart-data="vm.dataUmidades" chart-labels="vm.labels"
-                        chart-series="vm.seriesUmidade" chart-click="onClick"></canvas>
+                <canvas class="chart chart-line"
+                        chart-data="[vm.dados.umidade]"
+                        chart-labels="vm.dados.tempo"
+                        chart-series="vm.seriesUmidade"
+                        chart-click="onClick"></canvas>
             </div>
         </div>
     </div>
     <div class="col m4">
         <div class="card hoverable">
             <div class="card-content">
-                <canvas class="chart chart-line" chart-data="vm.dataSolo" chart-labels="vm.labels"
-                        chart-series="vm.seriesSolo" chart-click="onClick"></canvas>
+                <canvas class="chart chart-line"
+                        chart-data="[vm.dados.solo]"
+                        chart-labels="vm.dados.tempo"
+                        chart-series="vm.seriesSolo"
+                        chart-click="onClick"></canvas>
             </div>
         </div>
     </div>

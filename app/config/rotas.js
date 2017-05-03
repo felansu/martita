@@ -10,7 +10,7 @@
 
 		const dashboard = {
 			name: 'dashboard',
-			url: '/dashboard',
+			url: '',
 			templateUrl: 'views/dashboard/dashboard.html',
 			controller: 'DashboardController',
 			controllerAs: 'vm'

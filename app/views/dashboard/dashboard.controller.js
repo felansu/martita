@@ -7,78 +7,72 @@
         .controller('DashboardController', DashboardController);
 
     /* @ngInject */
-    function DashboardController($scope, $state, $mdSidenav, AuthService, $location, $filter, DashboardService) {
+    function DashboardController($scope, $state, $mdSidenav, $location, $filter, AuthService, DashboardService) {
 
         var vm = this;
 
         vm.openSideNavPanel = openSideNavPanel;
         vm.closeSideNavPanel = closeSideNavPanel;
         vm.alterarRota = alterarRota;
-        vm.dataTemperaturas = [];
-        vm.dataUmidades = [];
-        vm.dataSolo = [];
         vm.seriesTemperatura = ['Temperatura'];
         vm.seriesUmidade = ['Umidade'];
         vm.seriesSolo = ['Solo'];
+        vm.dados = {tempo: [], temperatura: [], umidade: [], solo: []};
+        vm.dadosMax = {temperatura: 0, umidade: 0, solo: 0};
+        vm.dadosMin = {temperatura: 100, umidade: 100, solo: 100};
+
         init();
 
         function init() {
             AuthService.firebaseIsInitialized();
-            $state.go('dashboard');
-            vm.result = DashboardService.obterDadosMartita();
-            vm.result.$loaded().then(function (result) {
-                vm.temperaturas = [];
-                vm.umidades = [];
-                vm.solo = [];
-                vm.tempo = [];
+            vm.dashboardService = DashboardService.getFsService();
+            $scope.$watch('vm.dashboardService.listaEntidades', function (result) {
+                var controleRepeticao = '';
+                if (result.$resolved) {
+                    var ultimoDia = ("0" + result[result.length - 1].tempo.day).slice(-2);
+                }
                 for (var i = 0; i < result.length; i++) {
                     var obj = result[i];
-                    var tempo = obj.tempo.hours;
-                    vm.tempo[tempo] = vm.tempo[tempo] ? vm.tempo[tempo] : [];
-                    vm.tempo[tempo]['temperatura'] = vm.tempo[tempo]['temperatura'] ?
-                        vm.tempo[tempo]['temperatura'] : [];
-                    vm.tempo[tempo]['umidade'] = vm.tempo[tempo]['umidade'] ? vm.tempo[tempo]['umidade'] : [];
-                    vm.tempo[tempo]['solo'] = vm.tempo[tempo]['solo'] ? vm.tempo[tempo]['solo'] : [];
-
-                    vm.tempo[tempo]['temperatura'].push(obj.temperatura);
-                    vm.tempo[tempo]['umidade'].push(obj.umidade);
-                    vm.tempo[tempo]['solo'].push(obj.solo);
-                    if(i === result.length-1){
-                        vm.ultimaTemperatura = obj.temperatura;
-                        vm.ultimaUmidade = obj.umidade;
-                        vm.ultimaSolo = obj.solo;
+                    var hora = ("0" + obj.tempo.hours).slice(-2);
+                    var minutos = ("0" + obj.tempo.minutes).slice(-2);
+                    var dia = ("0" + obj.tempo.day).slice(-2);
+                    var mes = ("0" + obj.tempo.month).slice(-2);
+                    var tempo = dia + '/' + mes + '  ' + hora + ':' + minutos;
+                    var controleRepeticaoAtual = hora + '/' + dia + '/' + mes;
+                    if (controleRepeticao !== controleRepeticaoAtual) {
+                        vm.dados.tempo.push(tempo);
+                        vm.dados.temperatura.push(obj.temperatura);
+                        vm.dados.umidade.push(obj.umidade);
+                        vm.dados.solo.push(obj.solo);
                     }
+                    if (dia === ultimoDia) {
+                        vm.dadosMax.temperatura = parseInt(vm.dadosMax.temperatura) < parseInt(obj.temperatura) ?
+                            obj.temperatura : parseInt(vm.dadosMax.temperatura);
+                        vm.dadosMax.umidade = parseInt(vm.dadosMax.umidade) < parseInt(obj.umidade) ?
+                            obj.umidade : parseInt(vm.dadosMax.umidade);
+                        vm.dadosMax.solo = parseInt(vm.dadosMax.solo) < parseInt(obj.solo) ?
+                            obj.solo : parseInt(vm.dadosMax.solo);
+
+                        vm.dadosMin.temperatura = parseInt(vm.dadosMin.temperatura) > parseInt(obj.temperatura) ?
+                            obj.temperatura : parseInt(vm.dadosMin.temperatura);
+                        vm.dadosMin.umidade = parseInt(vm.dadosMin.umidade) > parseInt(obj.umidade) ?
+                            obj.umidade : parseInt(vm.dadosMin.umidade);
+                        vm.dadosMin.solo = parseInt(vm.dadosMin.solo) > parseInt(obj.solo) ?
+                            obj.solo : parseInt(vm.dadosMin.solo);
+                    }
+                    controleRepeticao = controleRepeticaoAtual;
                 }
-                vm.dataTemperaturas = vm.tempo.map(function (a) {
-                    var soma = a.temperatura.reduce(function (a, b) {
-                        return parseFloat(a) + parseFloat(b);
-                    });
-                    return parseFloat(soma / a.temperatura.length);
-                });
-                vm.dataUmidades = vm.tempo.map(function (a) {
-                    var soma = a.umidade.reduce(function (a, b) {
-                        return parseFloat(a) + parseFloat(b);
-                    });
-                    return soma / a.umidade.length;
-                });
-                vm.dataSolo = vm.tempo.map(function (a) {
-                    var soma = a.solo.reduce(function (a, b) {
-                        return parseFloat(a) + parseFloat(b);
-                    });
-                    return soma / a.solo.length;
-                });
-                vm.dataTemperaturas = [Object.values(vm.dataTemperaturas)];
-                vm.dataUmidades = [Object.values(vm.dataUmidades)];
-                vm.dataSolo = [Object.values(vm.dataSolo)];
-                vm.labels = Object.keys(vm.tempo);
+
+                vm.ultimosDados = {
+                    temperatura: vm.dados.temperatura[vm.dados.temperatura.length - 1],
+                    umidade: vm.dados.umidade[vm.dados.umidade.length - 1],
+                    solo: vm.dados.solo[vm.dados.solo.length - 1]
+                };
 
                 getClassTemperatura();
                 getClassUmidade();
                 getClassSolo();
-            }).catch(function (error) {
-                console.error('Error:', error);
-            });
-
+            }, true);
         }
 
         function alterarRota(state) {
@@ -92,17 +86,6 @@
 
         function closeSideNavPanel() {
             $mdSidenav('left').close();
-        }
-
-        function isUsuarioLogado() {
-            return AuthService.isUsuarioLogado();
-        }
-
-        function signOut() {
-            AuthService.signOut().then(function () {
-                $state.go('login');
-                $location.url('login');
-            });
         }
 
         $scope.onClick = function (points, evt) {

@@ -6,15 +6,16 @@
         .service('DashboardService', DashboardService);
 
     /* @ngInject */
-    function DashboardService($firebaseArray) {
-        var self = this;
+    function DashboardService(FsService, $firebaseArray) {
+        this.getFsService = getFsService;
 
-        self.obterDadosMartita = obterDadosMartita;
-        function obterDadosMartita() {
-            return $firebaseArray(
-                firebase.database().ref()
-                    .child('martita')
-                    .limitToLast(68));
+        function getFsService() {
+            var fs = new FsService();
+            fs.entidadeFirebase = 'martita';
+            fs.listaEntidades = $firebaseArray(firebase.database().ref().child(fs.entidadeFirebase)
+                .limitToLast(120));
+
+            return fs;
         }
     }
 
