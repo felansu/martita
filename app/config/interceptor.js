@@ -2,15 +2,11 @@
 
 	'use strict';
 
-	var interceptor = function ($q, AuthService, $location) {
+	var interceptor = function ($q) {
 
 		var interceptor = {};
 
 		function request(config) {
-			// if (!AuthService.isUsuarioLogado()) {
-			// 	config.url = 'views/login/login.html';
-			// 	$location.path('/login');
-			// }
 			return config;
 		}
 

@@ -31,9 +31,9 @@
 
 			var input = angular.element(element.children()[0]);
 			input.bind('keyup', function (value) {
-				var valorDigitado = angular.element("#" + value.target.id).val();
-				if (valorDigitado.length == 14 && $scope.ngModel == null) {
-					FsAlertService.showSuccess('CPF Inv�lido!');
+				var valorDigitado = angular.element('#' + value.target.id).val();
+				if (valorDigitado.length === 14 && $scope.ngModel === null) {
+					FsAlertService.showSuccess('CPF Inválido!');
 				}
 			});
 		}

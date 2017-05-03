@@ -24,10 +24,7 @@ var path = {
         'bower_components/angular-material-sidemenu/dest/angular-material-sidemenu.js',
         'bower_components/firebase/firebase.js',
         'bower_components/angularfire/dist/angularfire.js',
-        'bower_components/angular-local-storage/dist/angular-local-storage.js',
-        'bower_components/material-steppers/dist/material-steppers.js',
         'bower_components/angular-materialize/src/angular-materialize.js',
-        'bower_components/angular-input-masks/angular-input-masks-standalone.min.js',
         'bower_components/chart.js/dist/Chart.min.js',
         'bower_components/angular-chart.js/dist/angular-chart.min.js'
     ],
@@ -37,7 +34,6 @@ var path = {
         'app/config/rotas.js',
         'app/config/auth.service.js',
         'app/shared/directives/**/**/*.js',
-        'app/shared/services/fs-storage.service.js',
         'app/shared/services/fs-alert.service.js',
         'app/shared/services/fs-service.service.js',
         'app/views/dashboard/dashboard.controller.js',
@@ -55,9 +51,7 @@ var path = {
         'bower_components/angular-material-sidemenu/dest/angular-material-sidemenu.css',
         'bower_components/material-design-icons/iconfont/material-icons.css',
         'bower_components/materialize/dist/css/materialize.min.css',
-        'bower_components/material-steppers/dist/material-steppers.min.css',
         'app/assets/css/style.css',
-        'app/views/login/login.style.css',
         'app/views/dashboard/dashboard.style.css',
         'app/assets/css/animate.css'
 
@@ -152,7 +146,9 @@ gulp.task('browser-sync', ['build'], function () {
         },
         browser: "chrome"
     });
-    console.log('Rodando em ambiente ' + ambiente);
+    console.log('  -------------------------------------  ');
+    console.log('\tRodando em ambiente ' + ambiente);
+    console.log('  -------------------------------------  ');
 });
 
 gulp.task('clean', function () {

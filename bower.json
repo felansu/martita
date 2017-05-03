@@ -29,9 +29,6 @@
     "moment": "v2.17.1",
     "firebase": "v3.7.0",
     "angularfire": "v2.3.0",
-    "angular-local-storage": "v0.5.2",
-    "material-steppers": "v1.0.3",
-    "angular-input-masks": "^2.5.0",
     "angular-chart.js": "v1.1.1"
   }
 }

@@ -3,7 +3,7 @@ Demo (Planta Camomila) https://martita-50f93.firebaseapp.com/#/dashboard
 Monitoramento em tempo real de cultivo.
  
 Foi utilizado o **Módulo WiFi ESP8266 NodeMcu** com sensor de umidade do solo, umidade e temperatura.
-Também foi preciso gerar um firware personalizado com os componentes requeridos (dht, file, gpio, http, net, node, tmr, uart, wifi, tls).
+Também foi preciso gerar um firmware personalizado com os componentes requeridos (dht, file, gpio, http, net, node, tmr, uart, wifi, tls).
 
 Utilizei a linguágem de programação Lua e o IDE ESPlorer.
 

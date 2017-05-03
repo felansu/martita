@@ -35,7 +35,8 @@
                     var obj = result[i];
                     var tempo = obj.tempo.hours;
                     vm.tempo[tempo] = vm.tempo[tempo] ? vm.tempo[tempo] : [];
-                    vm.tempo[tempo]['temperatura'] = vm.tempo[tempo]['temperatura'] ? vm.tempo[tempo]['temperatura'] : [];
+                    vm.tempo[tempo]['temperatura'] = vm.tempo[tempo]['temperatura'] ?
+                        vm.tempo[tempo]['temperatura'] : [];
                     vm.tempo[tempo]['umidade'] = vm.tempo[tempo]['umidade'] ? vm.tempo[tempo]['umidade'] : [];
                     vm.tempo[tempo]['solo'] = vm.tempo[tempo]['solo'] ? vm.tempo[tempo]['solo'] : [];
 
@@ -75,7 +76,7 @@
                 getClassUmidade();
                 getClassSolo();
             }).catch(function (error) {
-                console.error("Error:", error);
+                console.error('Error:', error);
             });
 
         }

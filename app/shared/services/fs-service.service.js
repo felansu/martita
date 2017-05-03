@@ -25,7 +25,7 @@
 						limpar();
 						return response;
 					}, function (error) {
-						console.log(error)
+						console.log(error);
 					});
 				} else {
 					self.listaEntidade.$add(self.entidade).then(function (response) {
@@ -40,12 +40,12 @@
 				self.listaEntidade.$remove(self.listaEntidade[key])
 					.then(function (response) {
 						FsAlertService.showSuccess('Registro eliminado com sucesso');
-						if (self.listaEntidade.length == 0) {
+						if (self.listaEntidade.length === 0) {
 							switchCard();
 						}
 						return response;
 					}, function (error) {
-						console.log(error)
+						console.log(error);
 					});
 			}
 
@@ -62,10 +62,10 @@
 				self.cardReveal = '';
 				if($('.card-reveal .card-title')){
 					self.mode = 'list';
-					self.cardReveal = $('.card-reveal .card-title')
+					self.cardReveal = $('.card-reveal .card-title');
 				}else{
 					self.mode = 'edit';
-					self.cardReveal = $('.card .activator')
+					self.cardReveal = $('.card .activator');
 				}
 				self.cardReveal.click();
 			}

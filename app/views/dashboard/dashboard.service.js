@@ -14,22 +14,8 @@
             return $firebaseArray(
                 firebase.database().ref()
                     .child('martita')
-                    .limitToLast(38));
-        }
-
-        function abreConexao() {
-            if (existeConexaoAberta()) {
-                var config = {
-                    databaseURL: "https://martita-50f93.firebaseio.com"
-                };
-                firebase.initializeApp(config);
-            }
-        }
-
-        function existeConexaoAberta() {
-            return !firebase.apps.length
+                    .limitToLast(68));
         }
     }
 
 })();
-
