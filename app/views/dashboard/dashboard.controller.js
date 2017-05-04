@@ -40,9 +40,13 @@
                     var tempo = dia + '/' + mes + '  ' + hora + ':' + minutos;
                     var controleRepeticaoAtual = hora + '/' + dia + '/' + mes;
                     if (controleRepeticao !== controleRepeticaoAtual) {
+                        vm.dados.tempo.shift();
                         vm.dados.tempo.push(tempo);
+                        vm.dados.temperatura.shift();
                         vm.dados.temperatura.push(obj.temperatura);
+                        vm.dados.umidade.shift();
                         vm.dados.umidade.push(obj.umidade);
+                        vm.dados.solo.shift();
                         vm.dados.solo.push(obj.solo);
                     }
                     if (dia === ultimoDia) {
